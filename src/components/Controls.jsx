@@ -1,7 +1,11 @@
 import styled from 'styled-components';
+import { throttle } from 'lodash'
 
 import { Search } from './Search';
 import { CustomSelect } from './CustomSelect';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectRegion } from '../store/controls/controls-selectors';
+import { setRegion } from '../store/controls/controls-actions';
 
 const optionsMap = {
   'Africa': { value: 'Africa', label: 'Africa' },
@@ -25,6 +29,15 @@ const Wrapper = styled.div`
 `;
 
 export const Controls = () => {
+  const dispatch = useDispatch();
+  const region = useSelector(selectRegion);
+
+  const handleSelect = (region) => {
+    dispatch(setRegion(region?.value || ''))
+  }
+
+  const throttledHandleSelect = throttle(handleSelect, 600)
+
   return (
     <Wrapper>
       <Search />
@@ -33,8 +46,8 @@ export const Controls = () => {
         placeholder="Filter by Region"
         isClearable
         isSearchable={false}
-        value={''}
-        onChange={() => {}}
+        value={optionsMap[region]}
+        onChange={throttledHandleSelect}
       />
     </Wrapper>
   );

@@ -1,6 +1,7 @@
 export const SET_COUTRIES = '@@country/SET_COUTRIES';
 export const SET_LOADING = '@@country/SET_LOADING';
 export const SET_ERROR = '@@country/SET_ERROR';
+export const CLEAR_DETAILS = '@@country/CLEAR_DETAILS';
 
 export const setCountries = (countries) => ({
     type: SET_COUTRIES,
@@ -14,6 +15,10 @@ export const setLoading = () => ({
 export const setError = (error) => ({
     type: SET_ERROR,
     payload: error,
+})
+
+export const clearDetails = () => ({
+    type: CLEAR_DETAILS,
 })
 
 export const loadCountries = () => (dispatch, _, { client, api }) => {
