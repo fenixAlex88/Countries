@@ -1,9 +1,9 @@
 import { CLEAR_CONTROLS, SET_REGION, SET_SEARCH } from "./controls-actions";
 
 const initialState = {
-    search: '',
-    region: '',
-}
+    search: "",
+    region: "",
+};
 
 export const controlsReducer = (state = initialState, { type, payload }) => {
     switch (type) {
@@ -16,4 +16,4 @@ export const controlsReducer = (state = initialState, { type, payload }) => {
         default:
             return state;
     }
-}
+};
